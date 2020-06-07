@@ -1,0 +1,96 @@
+﻿@model IEnumerable<KentKonsey.Dal.Haber>
+@{
+    ViewBag.Title = "Haberler";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<section class="main-section5">
+    <div class="container">
+        
+        <a  class="btn btn-success" href="@Url.Action("Haberler","KentKonsey")">Tüm Haberler</a>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+
+
+                <div class="col s12 wow fadeInLeft">
+                    <div class="news">
+                     
+                            <h5>@Html.Raw(@item.baslik)</h5>
+                            @if (item.aciklama.Length >= 100)
+                            {
+                                <p>@Html.Raw(@item.aciklama.Substring(0, 70))....</p><a href="#" style="cursor: pointer;font-weight:bold" onclick="Habergetir(@item.id)" class="modal-trigger">Devamını Oku</a>
+                            }
+                            else
+                            {
+                                <p>@Html.Raw(@item.aciklama)....</p><a href="#" style="cursor: pointer;font-weight:bold" onclick="Habergetir(@item.id)" class="modal-trigger">Devamını Oku</a>
+                            }
+                        </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- End Pages Indicators -->
+<!-- Modal -->
+
+
+<div class="modal" id="news">
+    <div class="modal-content">
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close grey-text"><i class='fa fa-close'></i></a>
+        </div>
+        <h4></h4>
+        <div class="model-body">
+
+            <div class="row">
+                <div class="col m 6">
+                    <img style="max-height:150px;" id="img" class="img-responsive myimg" src="" />
+                </div>
+                <div class="col m 6 wow fadeInRight">
+                    <p id="metin" style="line-height: 1.7; "></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- Login Modal -->
+
+<div id="modal2" class="modal">
+    <form>
+        <div class="modal-content">
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close grey-text"><i class='fa fa-close'></i></a>
+            </div>
+            <h4>Acount Login</h4>
+            <p>Login To Your Acount</p>
+
+            <div class="input-field col s12">
+                <input id="email" type="email" class="validate">
+                <label for="email">Email</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="password" type="password" class="validate">
+                <label for="password">Password</label>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action waves-effect waves-green btn blue"><i class="fa fa-lock left"></i> LOGIN</a>
+            <a href="#!" class="modal-action waves-effect waves-green btn grey grey-lighten-3"><i class="fa fa-refresh left"></i> Reset Password</a>
+        </div>
+    </form>
+</div>
+
+<!-- End Models -->
+
+
+
+

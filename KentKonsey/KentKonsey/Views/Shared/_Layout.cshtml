@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="ss" />
+    <!-- For Mobile Mete -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KENT KONSEYI</title>
+    <!-- Titlt Logo -->
+    <link rel="icon" href="~/Content/images/meclislogo.png" type="image/png" sizes="16x16">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" />
+    <!-- Materialize Css -->
+    <link rel="stylesheet" href="~/Content/css/materialize.min.css" />
+    <!-- Animate.Css -->
+    <link rel="stylesheet" href="~/Content/css/animate.min.css" />
+    <!-- Hover.Css -->
+    <link rel="stylesheet" href="~/Content/css/hover-min.css" />
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Main Css -->
+    <link rel="stylesheet" href="~/Content/css/main.css" />
+
+
+
+ 
+
+
+</head>
+
+<body>
+
+    <!-- Top Bar -->
+
+    <section class="top-bar">
+        <div class="row">
+            <div class="col m6">
+                <div class="col s3">
+                    <a href="@Url.Action("AnaSayfa","KentKonsey")">
+                        <img class="first-img" src="~/Content/images/meclislogo.png" />
+                    </a>
+                </div>
+                <div class="col s9">
+                    <h3>kent konseyi</h3>
+                    <h3>Gençlik Meclisi</h3>
+                </div>
+            </div>
+            <div class="col m6">
+               
+@using (Html.BeginForm("ArananHaber", "KentKonsey", FormMethod.Post, new { id = "Formbeg" }))
+{ 
+                    <form>
+                        <div class="form-groupe mt-3">
+                            @Html.TextBox("arama", "", new { @class = "NewSearch", placeholder = "Ara" })
+                            
+                          
+                           
+                        </div>
+
+
+
+
+
+                    </form>
+                    }
+                </div>
+
+
+                <div class="right-social left " >
+                    <a href="#!">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="#!">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="#!">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- End Top Bar -->
+    @RenderBody()
+ 
+   
+
+
+    <!-- End Footer -->
+    <!-- Jquery -->
+    <script src="~/scripts/jquery.min.js"></script>
+    <!-- JavaScript -->
+    <script src="~/scripts/materialize.min.js"></script>
+    <!-- WoW.Js -->
+    <script src="~/scripts/wow.min.js"></script>
+    <!-- Plugin -->
+    <script src="~/scripts/plugin.js"></script>
+
+</body>
+
+</html>

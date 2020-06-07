@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="ss" />
+    <!-- For Mobile Mete -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KENT KONSEYI</title>
+    <!-- Titlt Logo -->
+    <link rel="icon" href="images/meclislogo.png" type="image/png" sizes="16x16">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/css2/font-awesome.min.css" />
+    <!-- bootstrab -->
+    <link rel="stylesheet" href="~/Content/css2/bootstrap.min.css" />
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="~/Content/css2/animate.min.css" />
+    <!-- Main Css -->
+    <link rel="stylesheet" href="~/Content/css2/Style2.css" />
+
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header class="py-2 navbar-fixed-top">
+        <div class="container-fluied">
+            <div class="row">
+
+                <div class="col-md-5 text-sm-left">
+                    <a href="@Url.Action("AnaSayfa","KentKonsey")"><img src="~/Content/images/meclislogo.png" class="img-responsive" alt="Logo" /> </a> 
+                    <h2 class="ml-2 ">kent konseyi<br><span>Gençlik Meclisi</span></h2>
+
+                </div>
+                <div class="col-md-5 text-right ">
+@using (Html.BeginForm("ArananHaber", "KentKonsey", FormMethod.Post,new { id = "Formbeg" }))
+{
+                    <form action="" method="post"  id="Form">
+
+
+                        <div  class="form-groupe mt-3">
+                            @Html.TextBox("arama", "", new { @class = "form-control", placeholder = "Ara" })
+                            <input type="submit"
+                                 style="position: absolute; left: -9999px; width: 1px; height: 1px;"
+                                   tabindex="-1" />
+                            @*<button style="" id="searchsubmit" class="btn-danger" type="submit">eded</button>*@
+   
+                              @*<input class="form-control" style="height: 37px;border: 1px solid #ced4da;border-radius: 5px;" type="search" name="search" placeholder="Search">*@
+                        </div>
+                           
+
+                    </form>
+}
+                    <a href="#!" class="mr-1">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="#!" class="mr-1">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="#!">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+   @RenderBody()
+ 
+    <div class="container">
+        <footer></footer>
+    </div>
+
+    
+
+    <!-- End Footer -->
+    <!-- Jquery -->
+    <script src="~/scripts/jquery-3.2.1.min (1).js"></script>
+    <!-- JavaScript -->
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <!-- WOW.JS -->
+    <script src="~/scripts/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+
+    <script type="text/javascript">
+// Using jQuery.
+
+$(function() {
+    $('Form').each(function () {
+        $(this).find('input').keypress(function(e) {
+            // Enter pressed?
+            if(e.which == 10 || e.which == 13) {
+                this.form.submit();
+            }
+        });
+
+        $(this).find('input[type=submit]').hide();
+    });
+});
+    </script>
+
+
+    
+</body>
+
+</html>

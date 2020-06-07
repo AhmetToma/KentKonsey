@@ -1,0 +1,152 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<KentKonsey.Dal.Haber>
+@{
+    ViewBag.Title = "Haberler";
+   
+}
+<link rel="icon" href="~/Content/images/meclislogo.png" type="image/png" sizes="16x16">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="~/Content/css/font-awesome.min.css" />
+<!-- Materialize Css -->
+<link rel="stylesheet" href="~/Content/css/materialize.min.css" />
+<!-- Animate.Css -->
+<link rel="stylesheet" href="~/Content/css/animate.min.css" />
+<!-- Hover.Css -->
+<link rel="stylesheet" href="~/Content/css/hover-min.css" />
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- Main Css -->
+<link rel="stylesheet" href="~/Content/css/main.css" />
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+@if (Session["Giris"] == null)
+{
+    
+
+<div class="login wow bounceIn">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <a  href="#modal2" class="modal-trigger btn blue">Giriş yap</a>
+            </div>
+        </div>
+    </div>
+</div>
+}
+@if (Session["Giris"] != null)
+{<div class="login wow bounceIn">
+        <div class="container">
+            <div class="row">
+                <div  class="col s12">
+                    <a style="cursor:pointer" href="@Url.Action("Index","Home", new { Area = "Admin" })" class="modal-trigger btn blue">Haber Paneli</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<section class="main-section5">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+
+            
+            <div class="col s12 wow fadeInLeft" >
+                <div class="news">
+                    <h5>@Html.Raw(@item.baslik)</h5>
+                    @if (item.aciklama.Length >= 100)
+                    {
+                    <p>@Html.Raw(@item.aciklama.Substring(0, 70))....</p><a href="#" style="cursor: pointer;font-weight:bold" onclick="Habergetir(@item.id)" class="modal-trigger">Devamını Oku</a>
+                    }
+                    else 
+                           {
+                        <p>@Html.Raw(@item.aciklama)....</p><a href="#" style="cursor: pointer;font-weight:bold" onclick="Habergetir(@item.id)" class="modal-trigger">Devamını Oku</a>
+                    }
+                </div>
+            </div>
+            }
+          </div>
+        </div>
+    </section>
+
+<!-- End Pages Indicators -->
+<!-- Modal -->
+
+  
+<div class="modal" id="news">
+    <div class="modal-content">
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close grey-text"><i class='fa fa-close'></i></a>
+        </div>
+        <h4></h4>
+        <div class="model-body">
+       
+            
+
+            
+            <div class="row">
+               <div class="col m 6">
+                   <img style="max-height:150px;" id="img" class="img-responsive myimg"  src=""/>
+               </div>
+                <div class="col m 6 wow fadeInRight">
+                    <p id="metin" style="line-height: 1.7; "></p>
+                </div>
+            </div>
+           
+
+       
+        </div>
+
+    </div>
+</div>
+
+<p id="hhh"></p>
+
+
+
+<!-- Login Modal -->
+
+<div id="modal2" class="modal">
+    @using (Html.BeginForm("Giris", "Home", new { area = "Admin" }, FormMethod.Post))
+        {
+    
+        <div class="modal-content">
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close grey-text"><i class='fa fa-close'></i></a>
+            </div>
+            <h4>Giriş Yap</h4>
+       
+
+            <div class="input-field col s12">
+             
+                @Html.TextBox("kullAdi", null, new { @placeholder = "Email", @class = "validate" })
+                <label for="email">Email</label>
+            </div>
+            <div class="input-field col s12">
+                @Html.Password("sifre", null, new { @placeholder = "Sifre", @class = "validate" })
+                <label for="password">Şifre</label>
+            </div>
+
+        </div>
+        <div  class="modal-footer">
+            <input  id="more"  type="submit" class="modal-action waves-effect waves-green btn blue" value="login"  />
+         
+        </div>
+  
+    }
+</div> 
+<div class="card-action" style="margin: 30px 0 ; text-align:center" >
+    @Html.PagedListPager(Model, Page => Url.Action("Haberler", new { Page }))
+
+   
+    </div>
+
+
+
